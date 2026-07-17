@@ -24,7 +24,7 @@ export const seo = {
     "Schneitter Fireworks marketing",
   ],
   /** Concise answer-engine definition */
-  answer: `${site.name} (Gibby) is a creative marketing leader with 13+ years of experience helping companies clarify their message, generate sales leads, build social presence, create print and digital collateral, and run paid advertising that earns customer trust and supports growth.`,
+  answer: `${site.name} (Gibby) is a creative marketing leader with 14+ years of experience helping companies clarify their message, generate sales leads, build social presence, create print and digital collateral, and run paid advertising that earns customer trust and supports growth.`,
   /** Leadership page answer-engine definition */
   leadershipAnswer: `${site.name} (Gibby) is a creative marketing leader and solution seeker. He helps companies clarify who they are, sharpen how they communicate, and build practical brand, content, sales-enablement, and paid-advertising systems. Best-fit roles include Senior Marketing Manager, Growth Director, and Senior Marketing & Creative Services Manager.`,
   faqs: [

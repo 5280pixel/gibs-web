@@ -3,7 +3,7 @@ export const site = {
   shortName: "Gibby.",
   title: "Creative Marketing Leader | Helping Companies Clarify Their Message, Support Sales, Build Trust, and Grow",
   description:
-    "Paul Gibson II is a creative marketing and brand leader with 13+ years of experience helping organizations clarify their message, strengthen customer trust, and build practical marketing tools that support sales and growth.",
+    "Paul Gibson II is a creative marketing and brand leader with 14+ years of experience helping organizations clarify their message, strengthen customer trust, and build practical marketing tools that support sales and growth.",
   email: "p.gibson2@me.com",
   linkedin: "https://www.linkedin.com/in/gibsgibson/",
   why: "My WHY is to help people and organizations find clarity, build trust, and move forward by seeking creative, practical solutions rooted in sincere selfless service.",
