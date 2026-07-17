@@ -1,0 +1,28 @@
+# gibbypaul.com — Paul Gibson II portfolio
+User-agent: *
+Allow: /
+
+# Answer engines / AI crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://gibbypaul.com/sitemap.xml
+Host: https://gibbypaul.com

@@ -1,26 +1,322 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #f7f3ee;
+  --ink: #1a1a1a;
+  --accent: #c45d3a;
+  --muted: #5a5550;
+  --rule: #e4ddd4;
+  --glow-a: #f0c9b0;
+  --glow-b: #e8d5c4;
+  --glow-c: #d9e0d4;
+  --paragraph-gap: 0.75rem;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-ink: var(--ink);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-unbounded), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-unbounded), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.font-display {
+  font-family: var(--font-unbounded), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 28%, white);
+  color: var(--ink);
+}
+
+.atmosphere {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.atmosphere::before,
+.atmosphere::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.7;
+}
+
+.atmosphere::before {
+  width: min(70vw, 42rem);
+  height: min(70vw, 42rem);
+  top: -12%;
+  right: -8%;
+  background: radial-gradient(
+    circle,
+    var(--glow-a) 0%,
+    transparent 70%
+  );
+  animation: drift-a 18s ease-in-out infinite alternate;
+}
+
+.atmosphere::after {
+  width: min(60vw, 36rem);
+  height: min(60vw, 36rem);
+  bottom: -18%;
+  left: -10%;
+  background: radial-gradient(
+    circle,
+    var(--glow-c) 0%,
+    transparent 68%
+  );
+  animation: drift-b 22s ease-in-out infinite alternate;
+}
+
+.atmosphere-mid {
+  position: absolute;
+  width: min(50vw, 28rem);
+  height: min(50vw, 28rem);
+  top: 38%;
+  left: 32%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--glow-b) 0%,
+    transparent 70%
+  );
+  filter: blur(70px);
+  opacity: 0.55;
+  animation: drift-c 20s ease-in-out infinite alternate;
+}
+
+.portrait-backdrop {
+  position: absolute;
+  inset: -14%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.portrait-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(28px);
+  opacity: 0.55;
+}
+
+.portrait-glow-a {
+  width: 72%;
+  height: 72%;
+  top: 8%;
+  left: -6%;
+  background: radial-gradient(
+    circle,
+    var(--glow-a) 0%,
+    transparent 72%
+  );
+  animation: portrait-drift-a 16s ease-in-out infinite alternate;
+}
+
+.portrait-glow-b {
+  width: 58%;
+  height: 58%;
+  right: -8%;
+  bottom: 6%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--accent) 35%, var(--glow-c)) 0%,
+    transparent 70%
+  );
+  animation: portrait-drift-b 20s ease-in-out infinite alternate;
+}
+
+.portrait-ring {
+  position: absolute;
+  inset: 2%;
+  border: 1px dashed color-mix(in srgb, var(--accent) 28%, transparent);
+  border-radius: 2.25rem;
+  animation: portrait-ring-spin 48s linear infinite;
+}
+
+@keyframes portrait-drift-a {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(6%, 8%) scale(1.08);
+  }
+}
+
+@keyframes portrait-drift-b {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(-5%, -6%) scale(1.05);
+  }
+}
+
+@keyframes portrait-ring-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.2em;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover::after,
+.nav-link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+.reveal {
+  animation: reveal-up 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-image {
+  animation: image-in 1100ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.mosaic-tile {
+  transition:
+    transform 500ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mosaic-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+.mosaic-tile img,
+.mosaic-tile .tile-media {
+  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mosaic-tile:hover img,
+.mosaic-tile:hover .tile-media {
+  transform: scale(1.03);
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes image-in {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes drift-a {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-4%, 6%);
+  }
+}
+
+@keyframes drift-b {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(5%, -4%);
+  }
+}
+
+@keyframes drift-c {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(-3%, 4%) scale(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .hero-image,
+  .nav-link::after,
+  .mosaic-tile,
+  .mosaic-tile img,
+  .mosaic-tile .tile-media,
+  .atmosphere::before,
+  .atmosphere::after,
+  .atmosphere-mid,
+  .portrait-glow,
+  .portrait-ring {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .atmosphere::before,
+  .atmosphere::after,
+  .atmosphere-mid {
+    opacity: 0.55 !important;
+  }
+
+  .portrait-glow {
+    opacity: 0.45 !important;
+  }
+}
+
+.prose-body p + p {
+  margin-top: var(--paragraph-gap);
 }

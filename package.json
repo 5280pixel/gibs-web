@@ -5,11 +5,16 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "export": "next build",
+    "start": "npx serve out",
+    "pack": "npm run build && cd out && zip -r ../gibs-web-static.zip . && cd .. && echo \"Created gibs-web-static.zip — upload its contents to Hostinger public_html\"",
     "lint": "eslint"
   },
   "dependencies": {
+    "framer-motion": "^12.42.2",
+    "gray-matter": "^4.0.3",
     "next": "16.2.10",
+    "next-mdx-remote": "^6.0.0",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
