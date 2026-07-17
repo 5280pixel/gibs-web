@@ -89,11 +89,32 @@ Visit [https://gibbypaul.com](https://gibbypaul.com). You should see:
 
 Also turn on **SSL** in hPanel (Let's Encrypt) if HTTPS is not already active.
 
+### GitHub Actions deploy (automatic)
+
+Pushes to `main` build the site and upload `out/` over FTP. The repo currently has **no** Actions secrets configured — set these under **Settings → Secrets and variables → Actions** (or via CLI):
+
+| Secret | Example / notes |
+| --- | --- |
+| `FTP_SERVER` | Hostinger FTP hostname (e.g. `ftp.gibbypaul.com` or the IP from hPanel → FTP Accounts) |
+| `FTP_USERNAME` | FTP username from hPanel |
+| `FTP_PASSWORD` | FTP password |
+| `FTP_SERVER_DIR` | Optional. Defaults to `/domains/gibbypaul.com/public_html/`. Use `./public_html/` if the FTP user is already scoped to that domain. |
+
+```bash
+gh secret set FTP_SERVER -b 'your.ftp.host'
+gh secret set FTP_USERNAME -b 'your-ftp-user'
+gh secret set FTP_PASSWORD -b 'your-ftp-password'
+# optional:
+# gh secret set FTP_SERVER_DIR -b './public_html/'
+```
+
+Then re-run the failed workflow, or push any commit to `main`.
+
 ### Updating later
 
 1. Edit content/images locally
 2. Run `npm run build` (or `npm run pack`)
-3. Re-upload the new files from `out/` to Hostinger
+3. Re-upload the new files from `out/` to Hostinger — or push to `main` once the FTP secrets above are set
 
 ## Pages
 
