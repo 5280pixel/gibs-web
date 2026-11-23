@@ -1,6 +1,5 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import("next").NextConfig} */
+const nextConfig = {
   // Static HTML export for Hostinger (or any shared hosting)
   output: "export",
   // Folder URLs work reliably on Apache/Hostinger: /work/miracle-truss/index.html

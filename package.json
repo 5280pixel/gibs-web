@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "export": "next build",
+    "build": "next build --webpack",
+    "export": "npm run build",
     "start": "npx serve out",
     "pack": "npm run build && cd out && zip -r ../gibs-web-static.zip . && cd .. && echo \"Created gibs-web-static.zip — upload its contents to Hostinger public_html\"",
     "lint": "eslint"
